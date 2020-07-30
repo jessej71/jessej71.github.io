@@ -1,5 +1,17 @@
-<div id="chart-area"></div>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Test Visualization Page </title>
+    </head>
+    <body>
+        <h1>This is a scatter plot example</h1>
+            <div id="chart-area"></div>
 
+    </body>
+</html>
+
+    <script>
 var container = document.getElementById('chart-area');
 var data = {
     series: {
@@ -92,3 +104,4 @@ var theme = {
 // options.theme = 'myTheme';
 
 var chart = tui.chart.comboChart(container, data, options);
+    </script>
