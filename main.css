@@ -1,0 +1,17 @@
+body {
+    font-family: helvetica;
+  }
+  
+  ul {
+    font-family: monospace;
+  }
+  .list {
+    list-style: square;
+  }
+  
+  #date {
+    font-size: 12px;
+    font-style: italic;
+    font-weight: bold;
+  }
+  
