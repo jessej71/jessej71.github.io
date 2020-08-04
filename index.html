@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
   <head>
-    <meta charset="utf-8">
-    <title>Task Timeline</title>
-    <link rel="stylesheet" href="main.css">
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.13.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.14.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.10.0"></script>
+
+    Testing some visualization from Vega-Lite library.
+    <style media="screen">
+      /* Add space between Vega-Embed links  */
+      .vega-actions a {
+        margin-right: 5px;
+      }
+    </style>
   </head>
+
   <body>
-    <h1>Task Timeline</h1>
-    <p id="date"></p>
-    <ul>
-      <li class="list">Edit the head</li>
-      <li class="list">Edit the body</li>
-      <li>Link to JavaScript</li>
-    </ul>
-    <script src="app.js"></script>
-    <noscript>You need to enable JavaScript to view the full site.</noscript>
+    <h1>Here is a sample bar chart.</h1>
+    <div id="bar_chart"></div>
+    <script src="bar_chart.js"></script>
+
+
   </body>
 </html>
