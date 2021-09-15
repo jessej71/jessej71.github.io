@@ -1,0 +1,17 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Labor Participation Rate in the United States",
+  "description": "Labor market participation rates.",
+  "data": {"url": "data/laborParticipation.csv"},
+  "width": 600,
+  "height": 400,
+  "mark": {
+    "type": "line",
+    "point": false
+  },
+  "encoding": {
+    "x": {"field": "Date","type": "temporal","title": "Years"},
+    "y": {"field": "Labor Participation", "type": "quantitative", "title":"Labor Participation Rate",
+    "scale": {"zero": false}}
+  }
+}

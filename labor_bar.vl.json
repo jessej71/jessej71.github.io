@@ -1,0 +1,67 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "2010 and 2020 Labor Participation Rates",
+    "data": { "values": [
+        {"Age": "16-19","Gender": "Male","Rate":34.9,"Year": 2010},
+        {"Age": "20-24","Gender": "Male","Rate":74.5,"Year": 2010},
+        {"Age": "25-34","Gender": "Male","Rate":89.7,"Year": 2010},
+        {"Age": "35-44","Gender": "Male","Rate":91.5,"Year": 2010},
+        {"Age": "45-54","Gender": "Male","Rate":86.8,"Year": 2010},
+        {"Age": "55-64","Gender": "Male","Rate":70.0,"Year": 2010},
+        {"Age": "65-74","Gender": "Male","Rate":30.4,"Year": 2010},
+        {"Age": "74-  ","Gender": "Male","Rate":10.4,"Year": 2010},
+        {"Age": "16-19","Gender": "Female","Rate":35.0,"Year": 2010},
+        {"Age": "20-24","Gender": "Female","Rate":68.2,"Year": 2010},
+        {"Age": "25-34","Gender": "Female","Rate":74.7,"Year": 2010},
+        {"Age": "35-44","Gender": "Female","Rate":75.2,"Year": 2010},
+        {"Age": "45-54","Gender": "Female","Rate":75.7,"Year": 2010},
+        {"Age": "55-64","Gender": "Female","Rate":60.2,"Year": 2010},
+        {"Age": "65-74","Gender": "Female","Rate":21.6,"Year": 2010},
+        {"Age": "74-  ","Gender": "Female","Rate":5.3,"Year": 2010},
+        {"Age": "16-19","Gender": "Male","Rate":34.1,"Year": 2020},
+        {"Age": "20-24","Gender": "Male","Rate":71.0,"Year": 2020},
+        {"Age": "25-34","Gender": "Male","Rate":87.1,"Year": 2020},
+        {"Age": "35-44","Gender": "Male","Rate":89.7,"Year": 2020},
+        {"Age": "45-54","Gender": "Male","Rate":86.8,"Year": 2020},
+        {"Age": "55-64","Gender": "Male","Rate":70.7,"Year": 2020},
+        {"Age": "65-74","Gender": "Male","Rate":31.5,"Year": 2020},
+        {"Age": "74-  ","Gender": "Male","Rate":11.8,"Year": 2020},
+        {"Age": "16-19","Gender": "Female","Rate":34.9,"Year": 2020},
+        {"Age": "20-24","Gender": "Female","Rate":67.5,"Year": 2020},
+        {"Age": "25-34","Gender": "Female","Rate":75.7,"Year": 2020},
+        {"Age": "35-44","Gender": "Female","Rate":75.0,"Year": 2020},
+        {"Age": "45-54","Gender": "Female","Rate":74.7,"Year": 2020},
+        {"Age": "55-64","Gender": "Female","Rate":59.1,"Year": 2020},
+        {"Age": "65-74","Gender": "Female","Rate":22.4,"Year": 2020},
+        {"Age": "74-  ","Gender": "Female","Rate":6.8,"Year": 2020}
+    ]
+
+    },
+    "width": {"step": 12},
+    "mark": "bar",
+    "encoding": {
+        "column": {
+            "field": "Age", "type": "ordinal", "spacing": 10,
+            "header": {"orient": "bottom"}
+        },
+        "y": {
+            "field": "Rate",
+            "type": "quantitative",
+            "title": "Labor Participation Rate",
+            "axis": {"grid": true}
+        },
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {"grid": true}
+        },
+        "color": {
+            "field": "Gender",
+            "scale": {"range": ["#675193", "#ca8861"]}
+        }
+    },
+    "config": {
+        "view": {"stroke": "transparent"},
+        "axis": {"domainWidth": 1}
+    }
+}

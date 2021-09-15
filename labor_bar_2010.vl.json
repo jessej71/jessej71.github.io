@@ -1,0 +1,51 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "2010",
+  "data": { "values": [
+    {"Age": "16-19","Gender": "Male","Rate":34.9},
+    {"Age": "20-24","Gender": "Male","Rate":74.5},
+    {"Age": "25-34","Gender": "Male","Rate":89.7},
+    {"Age": "35-44","Gender": "Male","Rate":91.5},
+    {"Age": "45-54","Gender": "Male","Rate":86.8},
+    {"Age": "55-64","Gender": "Male","Rate":70.0},
+    {"Age": "65-74","Gender": "Male","Rate":30.4},
+    {"Age": "74-  ","Gender": "Male","Rate":10.4},
+    {"Age": "16-19","Gender": "Female","Rate":35.0},
+    {"Age": "20-24","Gender": "Female","Rate":68.2},
+    {"Age": "25-34","Gender": "Female","Rate":74.7},
+    {"Age": "35-44","Gender": "Female","Rate":75.2},
+    {"Age": "45-54","Gender": "Female","Rate":75.7},
+    {"Age": "55-64","Gender": "Female","Rate":60.2},
+    {"Age": "65-74","Gender": "Female","Rate":21.6},
+    {"Age": "74-  ","Gender": "Female","Rate":5.3}
+  ]
+
+  },
+  "width": {"step": 12},
+  "mark": "bar",
+  "encoding": {
+    "column": {
+      "field": "Age", "type": "ordinal", "spacing": 10,
+      "header": {"orient": "bottom"}
+    },
+    "y": {
+      "field": "Rate",
+      "type": "quantitative",
+      "title": "Labor Participation Rate",
+      "axis": {"grid": true}
+    },
+    "x": {
+      "field": "Gender",
+      "type": "ordinal",
+      "axis": null
+    },
+    "color": {
+      "field": "Gender",
+      "scale": {"range": ["#675193", "#ca8861"]}
+    }
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "axis": {"domainWidth": 1}
+  }
+}
