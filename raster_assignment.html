@@ -7,11 +7,19 @@
     <title>Rater Assignment</title>
 </head>
 <body>
-<div id="vis"></div>
+<div id="math_raster"></div>
+<div id="geo_raster"></div>
 
 <script>
-    const spec = "raster_plot.vg.json";
-    vegaEmbed("#vis", spec)
+
+    const math_spec = "math_raster.vg.json";
+    vegaEmbed("#math_raster", math_spec)
+        // result.view provides access to the Vega View API
+        .then(result => console.log(result))
+        .catch(console.warn);
+
+    const plot_spec = "raster_plot.vg.json";
+    vegaEmbed("#geo_raster", plot_spec)
         // result.view provides access to the Vega View API
         .then(result => console.log(result))
         .catch(console.warn);

@@ -83,7 +83,7 @@
       "name": "color",
       "type": "quantize",
       "domain": {"signal": "[0, stop]"},
-      "range": {"scheme": "turbo", "count": {"signal": "levels"}}
+      "range": {"scheme": "blues", "count": {"signal": "levels"}}
     }
   ],
 
