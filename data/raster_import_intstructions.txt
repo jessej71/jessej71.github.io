@@ -1,0 +1,40 @@
+Turns out, getting data into geojson can be a little chore.
+
+To help you get started I've compiled this short list of instructions.
+
+#1 Let's try data from a reanalysis product. These reconcile data from weather stations and satellites
+    with weather models to produce world-wide weather patterns.
+
+    The file specification is here: https://gmao.gsfc.nasa.gov/pubs/docs/Bosilovich785.pdf
+    And, the data itself is here: https://portal.nccs.nasa.gov/datashare/gmao_m2amip/
+
+#2 I suggest you study the handbook, looking for an interesting field or fields to display.
+    There are many.
+
+#3 To make my example simple, I'm going to take data from
+    https://portal.nccs.nasa.gov/datashare/gmao_m2amip/m2amip_ens/CONST/m2amip_ens.const_2d_asm_Nx.00000000.nc4
+   This is a set of constants that do not change during the simulation.
+   That's eaiser because I don't have to extract the right moment of time to do my job. Once you see how
+   this is done, it'll be easier to see how to take a time slice.
+
+#4 The data are in netcdf format. To manipulate files of this type, get the right software:
+    https://cloud-gc.readthedocs.io/en/stable/chapter04_developer-guide/install-basic.html
+
+#5 Run ncdump, which turns the binary contents of the netcdf file into text.
+    In the example try:
+
+    ncdump -v PHIS m2amip_ens.const_2d_asm_Nx.00000000.nc4 > PHIS.json
+
+    which creates a file, PHIS.json, of the geopotential height.
+
+ There are several problems with this file. First it lacks metadata and containing braces:
+ Change the file to be more like:
+
+ {
+  "width": 576,
+  "height": 360,
+  "scale": [0.625, 0.5],
+  "translate": [-180, -90],
+  "values": [27576.33, 27576.33, 27576.33, 27576.33, 27576.33, 27576.33, 27576.33, 27576.33, 27576.33,
+
+  BUT NOTE! The "values" property must be a list and the entire list is one line!

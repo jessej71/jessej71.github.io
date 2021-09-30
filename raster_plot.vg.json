@@ -38,7 +38,7 @@
       "bind": {"input": "range", "min": 2, "max": 12, "step": 1}
     },
     {
-      "name": "stop", "value": 3000
+      "name": "stop", "value": 54000
     },
     {
       "name": "step",
@@ -48,12 +48,12 @@
 
   "data": [
     {
-      "name": "precipitation",
-      "url": "data/annual-precip.json"
+      "name": "geopotential",
+      "url": "data/PHIS.json"
     },
     {
       "name": "contours",
-      "source": "precipitation",
+      "source": "geopotential",
       "transform": [
         {
           "type": "isocontour",
@@ -83,7 +83,7 @@
       "name": "color",
       "type": "quantize",
       "domain": {"signal": "[0, stop]"},
-      "range": {"scheme": "blues", "count": {"signal": "levels"}}
+      "range": {"scheme": "inferno", "count": {"signal": "levels"}}
     }
   ],
 
@@ -128,7 +128,7 @@
 
   "legends": [
     {
-      "title": "Annual Precipitation (mm)",
+      "title": "Geopotential Surface (m^2/s^2)",
       "fill": "color",
       "orient": "bottom",
       "offset": 5,
