@@ -91,12 +91,20 @@
     {
       "type": "shape",
       "clip": true,
-      "from": {"data": "world"},
+      "from": {
+        "data": "world"
+      },
       "encode": {
         "update": {
-          "strokeWidth": {"value": 1},
-          "stroke": {"value": "#eee"},
-          "fill": {"value": "#ddd"}
+          "strokeWidth": {
+            "value": 1
+          },
+          "stroke": {
+            "value": "#eee"
+          },
+          "fill": {
+            "value": "#ddd"
+          }
         }
       },
       "transform": [
