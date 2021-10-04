@@ -9,9 +9,12 @@
 <body>
 <div id="math_raster"></div>
 <div id="geo_raster"></div>
+<div id="local_geo_raster"></div>
 
 <script>
-
+    // Register a discrete color scheme named "basic" that can then be used in Vega specs
+    vega.scheme('basic_johnson', ['#a35e5e', '#768b76', '#393965', '#c2c27c',
+        '#a788a7', '#87adad']);
     const math_spec = "math_raster.vg.json";
     vegaEmbed("#math_raster", math_spec)
         // result.view provides access to the Vega View API
@@ -20,6 +23,12 @@
 
     const plot_spec = "raster_plot.vg.json";
     vegaEmbed("#geo_raster", plot_spec)
+        // result.view provides access to the Vega View API
+        .then(result => console.log(result))
+        .catch(console.warn);
+
+    const plot_spec_local = "raster_plot_local.vg.json";
+    vegaEmbed("#local_geo_raster", plot_spec_local)
         // result.view provides access to the Vega View API
         .then(result => console.log(result))
         .catch(console.warn);
