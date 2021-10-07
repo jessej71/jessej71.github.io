@@ -7,29 +7,6 @@
 
   "signals": [
     {
-      "name": "projection", "value": "naturalEarth1",
-      "bind": {"input": "select", "options": [
-        "azimuthalEqualArea", "equalEarth", "equirectangular",
-        "naturalEarth1", "mollweide", "orthographic"
-      ]}
-    },
-    {
-      "name": "scale", "value": 110,
-      "bind": {"input": "range", "min": 50, "max": 400, "step": 5}
-    },
-    {
-      "name": "rotate0", "value": 0,
-      "bind": {"input": "range", "min": -180, "max": 180, "step": 1}
-    },
-    {
-      "name": "rotate1", "value": 0,
-      "bind": {"input": "range", "min": 0, "max": 360, "step": 1}
-    },
-    {
-      "name": "rotate2", "value": 0,
-      "bind": {"input": "range", "min": 0, "max": 360, "step": 1}
-    },
-    {
       "name": "opacity", "value": 0.5,
       "bind": {"input": "range", "min": 0, "max": 1, "step": 0.01}
     },
@@ -38,7 +15,7 @@
       "bind": {"input": "range", "min": 2, "max": 12, "step": 1}
     },
     {
-      "name": "stop", "value": 54000
+      "name": "stop", "value": 3000
     },
     {
       "name": "step",
@@ -48,33 +25,30 @@
 
   "data": [
     {
-      "name": "geopotential",
-      "url": "data/PHIS.json"
+      "name": "precip",
+      "url": "data/mt_precip.json"
     },
     {
       "name": "contours",
-      "source": "geopotential",
+      "source": "precip",
       "transform": [
         {
           "type": "isocontour",
-          "thresholds": {"signal": "sequence(step, stop, step)"}
+          "thresholds": {"signal": "sequence(0, stop, step)"}
         }
       ]
     },
     {
-      "name": "world",
-      "url": "data/world-110m.json",
-      "format": {"type": "topojson", "feature": "countries"}
+      "name": "montana",
+      "url": "data/gz_2010_us_040_00_500k.json",
+      "format": {"type": "topojson", "feature": "STATE"}
     }
   ],
 
   "projections": [
     {
       "name": "projection",
-      "type": {"signal": "projection"},
-      "scale": {"signal": "scale"},
-      "rotate": {"signal": "[rotate0, rotate1, rotate2]"},
-      "translate": {"signal": "[width/2, height/2]"}
+      "type": "albersUsa"
     }
   ],
 
@@ -83,7 +57,7 @@
       "name": "color",
       "type": "quantize",
       "domain": {"signal": "[0, stop]"},
-      "range": {"scheme": "category20b", "count": {"signal": "levels"}}
+      "range": {"scheme": "tealblues", "count": {"signal": "levels"}}
     }
   ],
 
@@ -92,7 +66,7 @@
       "type": "shape",
       "clip": true,
       "from": {
-        "data": "world"
+        "data": "montana"
       },
       "encode": {
         "update": {
@@ -116,7 +90,6 @@
     },
     {
       "type": "shape",
-      "clip": true,
       "from": { "data": "contours"},
       "encode": {
         "update": {
@@ -136,7 +109,7 @@
 
   "legends": [
     {
-      "title": "Geopotential Surface (m^2/s^2)",
+      "title": "1981-2010 Average Total Annual Precipitation (mm)",
       "fill": "color",
       "orient": "bottom",
       "offset": 5,

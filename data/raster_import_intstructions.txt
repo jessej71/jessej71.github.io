@@ -14,7 +14,7 @@ To help you get started I've compiled this short list of instructions.
 #3 To make my example simple, I'm going to take data from
     https://portal.nccs.nasa.gov/datashare/gmao_m2amip/m2amip_ens/CONST/m2amip_ens.const_2d_asm_Nx.00000000.nc4
    This is a set of constants that do not change during the simulation.
-   That's eaiser because I don't have to extract the right moment of time to do my job. Once you see how
+   That's easier because I don't have to extract the right moment of time to do my job. Once you see how
    this is done, it'll be easier to see how to take a time slice.
 
 #4 The data are in netcdf format. To manipulate files of this type, get the right software:
@@ -38,3 +38,6 @@ To help you get started I've compiled this short list of instructions.
   "values": [27576.33, 27576.33, 27576.33, 27576.33, 27576.33, 27576.33, 27576.33, 27576.33, 27576.33,
 
   BUT NOTE! The "values" property must be a list and the entire list is one line!
+
+  #6 For quickly viewing and investigating the contents of a netcdf file, I like to use "ncview", which is quite easily
+    installed in linux, but probably impossible on windows. "Panopoly"?
