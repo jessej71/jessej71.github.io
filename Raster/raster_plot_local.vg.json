@@ -40,15 +40,16 @@
     },
     {
       "name": "montana",
-      "url": "data/gz_2010_us_040_00_500k.json",
-      "format": {"type": "topojson", "feature": "STATE"}
+      "url": "data/gz_2010_us_040_00_500k.json"
     }
   ],
 
   "projections": [
     {
       "name": "projection",
-      "type": "albersUsa"
+      "type": "mercator",
+      "scale": 1400,
+      "center":[-105,42]
     }
   ],
 
