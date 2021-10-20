@@ -9,7 +9,7 @@
     { "name": "projScale", "value": 45},
     { "name": "projTranslate", "update": "[mapWidth / 2, mapHeight / 2]" },
     {
-      "name": "Color Attribute: ",
+      "name": "ColorAs",
       "value": "Democracy",
       "bind": {
         "input": "select",
@@ -45,12 +45,16 @@
       "name": "projections",
       "values": [
         {"type":"mercator","scale":800,"center":[34,36], "label": "Mediterranean"},
-        {"type":"mercator","scale":1800,"center":[30,36], "label": "Aegean"}
+        {"type":"mercator","scale":2000,"center":[30,36], "label": "Aegean"}
       ]
     },
     {
       "name": "world",
       "url": "data/earth-coastlines-500m.geo.json"
+    },
+    {
+      "name": "rivers",
+      "url": "data/earth-rivers-500m.geo.json"
     },
     {
       "name": "graticule",
@@ -77,7 +81,8 @@
       "format": {
         "type": "json",
         "property": "features"
-      }
+      },
+    "transform": [{"type":"filter","expr":"datum.properties.staseis>0"}]
     }
   ],
 
@@ -88,10 +93,10 @@
   "scales": [
     {
       "name": "color",
-      "type": "symlog",
+      "type": "quantize",
       "domain": [0, 20],
-      "range": {"scheme": "turbo"}
-}
+      "range": {"scheme": "category10","count": 5}
+    }
   ],
 
   "marks": [
@@ -152,6 +157,20 @@
         },
         {
           "type": "shape",
+          "from": {"data": "rivers"},
+          "clip": {"sphere": "projection"},
+          "encode": {
+            "enter": {
+              "strokeWidth": {"value": 0.2},
+              "stroke": {"value": "blue"}
+            }
+          },
+          "transform": [
+            { "type": "geoshape", "projection": "projection" }
+          ]
+        },
+        {
+          "type": "shape",
           "from": {"data": "graticule"},
           "clip": {"sphere": "projection"},
           "interactive": false,
@@ -170,15 +189,16 @@
           "from": {"data": "polis"},
           "encode": {
             "update": {
-              "opacity": {"value": 1.0},
+              "opacity": {"value": 1},
               "fill": {"scale": "color", "field": "properties.staseis"}
+
             }
           },
           "transform": [
             {
               "type": "geoshape",
               "projection": "projection",
-              "pointRadius": 1.25
+              "pointRadius":2
             }
           ]
         },
@@ -218,7 +238,7 @@
   ],
   "legends": [
     {
-      "title": "Staseis Occurrences",
+      "title": {"signal": "ColorAs"},
       "fill": "color",
       "orient": "bottom",
       "offset": 5,
