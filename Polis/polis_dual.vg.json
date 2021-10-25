@@ -10,7 +10,7 @@
     { "name": "projTranslate", "update": "[mapWidth / 2, mapHeight / 2]" },
     {
       "name": "ColorAs",
-      "value": "Democracy",
+      "value": "staseis",
       "bind": {
         "input": "select",
         "options": ["Bronze",
@@ -82,7 +82,25 @@
         "type": "json",
         "property": "features"
       },
-    "transform": [{"type":"filter","expr":"datum.properties.staseis>0"}]
+    "transform": [{"type":"filter","expr":"datum.properties[ColorAs]>0"}]
+    },
+    {
+      "name": "polis_no",
+      "url": "data/polis.json",
+      "format": {
+        "type": "json",
+        "property": "features"
+      },
+      "transform": [{"type":"filter","expr":"datum.properties[ColorAs]==0"}]
+    },
+    {
+      "name": "pulldown",
+      "url": "data/polis.json",
+      "format": {
+        "type": "json",
+        "property": "features"
+      },
+      "transform": [{"type":"formula","as":"pulldown","expr":"datum.properties[ColorAs] > 0 ? datum.properties[ColorAs] : null"}]
     }
   ],
 
@@ -96,9 +114,14 @@
       "type": "quantize",
       "domain": [0, 20],
       "range": {"scheme": "category10","count": 5}
+    },
+    {
+      "name": "color2",
+      "type": "quantize",
+      "domain": {"data": "pulldown", "field": "pulldown"},
+      "range": {"scheme": "category10","count": 5}
     }
   ],
-
   "marks": [
     {
       "type": "group",
@@ -157,20 +180,6 @@
         },
         {
           "type": "shape",
-          "from": {"data": "rivers"},
-          "clip": {"sphere": "projection"},
-          "encode": {
-            "enter": {
-              "strokeWidth": {"value": 0.2},
-              "stroke": {"value": "blue"}
-            }
-          },
-          "transform": [
-            { "type": "geoshape", "projection": "projection" }
-          ]
-        },
-        {
-          "type": "shape",
           "from": {"data": "graticule"},
           "clip": {"sphere": "projection"},
           "interactive": false,
@@ -186,11 +195,28 @@
         },
         {
           "type": "shape",
-          "from": {"data": "polis"},
+          "from": {"data": "pulldown"},
           "encode": {
             "update": {
               "opacity": {"value": 1},
-              "fill": {"scale": "color", "field": "properties.staseis"}
+              "fill": {"scale": "color2", "field": "pulldown"}
+              }
+            },
+          "transform": [
+            {
+              "type": "geoshape",
+              "projection": "projection",
+              "pointRadius":2
+            }
+          ]
+        },
+        {
+          "type": "shape",
+          "from": {"data": "polis_no"},
+          "encode": {
+            "update": {
+              "opacity": {"value": 0.4},
+              "fill": {"value": "black"}
 
             }
           },
@@ -198,7 +224,7 @@
             {
               "type": "geoshape",
               "projection": "projection",
-              "pointRadius":2
+              "pointRadius":0.75
             }
           ]
         },
@@ -239,7 +265,7 @@
   "legends": [
     {
       "title": {"signal": "ColorAs"},
-      "fill": "color",
+      "fill": "color2",
       "orient": "bottom",
       "offset": 5,
       "type": "gradient",
